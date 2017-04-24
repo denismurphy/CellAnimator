@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UITableViewController {
     
-    var objects: [NSDate] = []
+    var objects: [Date] = []
     
     
     override func awakeFromNib() {
@@ -21,8 +21,8 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        for var i=0; i<100; i++ {
-            objects.append(NSDate())
+        for i in 0 ..< 100 {
+            objects.append(Date())
         }
     }
     
@@ -33,28 +33,28 @@ class ViewController: UITableViewController {
     
     // MARK: - Table View
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objects.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
         
-        let object = objects[indexPath.row] as NSDate
+        let object = objects[indexPath.row] as Date
         cell.textLabel?.text = object.description
         return cell
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return false
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformWave, andDuration: 1)
     }
     
